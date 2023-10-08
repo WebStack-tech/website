@@ -1,95 +1,67 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-
+"use client"
+import { useEffect, useState } from "react"
+import classes from "./page.module.scss"
 export default function Home() {
+  const [day, setDay] = useState(0);
+  const [h, setH] = useState(0);
+  const [mm, setMm] = useState(0);
+  const [ss, setSs] = useState(0);
+  const [ms, setMs] = useState(0);
+  useEffect(() => {
+    const date = new Date('2024-02-12T00:00:00').getTime();;
+    setInterval(function () {
+      const now = new Date().getTime();
+      const timeRemaining = date - now;
+
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      setDay(days)
+      setH(hours);
+      setMm(minutes);
+      setSs(seconds)
+      // setMs(milliseconds)
+
+    }, 1);
+    return () => { }
+  }, [])
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
+    <div className={classes.page}>
+      <h1>Coming Soon</h1>
+      <div className={classes.container}>
+        <div className={classes.time}>
+          <p>{day}D</p>
+          <p>{h}h</p>
+          <p>{mm}m</p>
+          <p>{ss}s</p>
+          {/* <p>{ms}ms</p> */}
+        </div>
+        <div className={classes.media}>
+          <a href="https://www.instagram.com/webstack.in/">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" fill="white" />
+            </svg>
+          </a>
+          <a href="https://www.threads.net/@webstack.in">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.7051 11.108C16.5431 8.121 14.9111 6.411 12.1711 6.394C10.5191 6.384 9.1381 7.084 8.2921 8.367L9.8001 9.4C10.4341 8.439 11.4351 8.24 12.1601 8.247C13.0631 8.253 13.7431 8.515 14.1841 9.027C14.5041 9.399 14.7191 9.914 14.8261 10.563C14.0261 10.427 13.1601 10.385 12.2361 10.438C9.6301 10.588 7.9561 12.108 8.0681 14.219C8.1251 15.29 8.6581 16.212 9.5701 16.814C10.3401 17.323 11.3341 17.571 12.3651 17.515C13.7281 17.44 14.7971 16.92 15.5431 15.97C16.1091 15.248 16.4671 14.312 16.6251 13.134C17.2751 13.526 17.7551 14.041 18.0221 14.661C18.4741 15.715 18.5001 17.447 17.0871 18.859C15.8491 20.095 14.3611 20.631 12.1121 20.647C9.6171 20.629 7.7301 19.828 6.5041 18.269C5.3541 16.809 4.7611 14.699 4.7391 12C4.7611 9.3 5.3551 7.191 6.5041 5.73C7.7301 4.171 9.6171 3.371 12.1121 3.353C14.6251 3.372 16.5441 4.175 17.8181 5.743C18.4431 6.511 18.9131 7.477 19.2241 8.603L20.9901 8.133C20.6131 6.746 20.0211 5.551 19.2161 4.56C17.5831 2.55 15.1831 1.521 12.1061 1.5C9.0351 1.521 6.6731 2.555 5.0871 4.571C3.6761 6.366 2.9471 8.877 2.9231 12.007C2.9471 15.137 3.6761 17.634 5.0871 19.429C6.6741 21.445 9.0471 22.479 12.1171 22.5C14.8481 22.481 16.7721 21.766 18.3571 20.183C20.4321 18.11 20.3691 15.513 19.6861 13.919C19.1611 12.694 18.1161 11.713 16.7061 11.109L16.7051 11.108ZM12.2671 15.665C11.1251 15.729 9.9391 15.217 9.8801 14.119C9.8371 13.305 10.4601 12.397 12.3371 12.289C13.1854 12.232 14.0375 12.2906 14.8701 12.463C14.6541 15.165 13.3851 15.603 12.2671 15.665Z" fill="white" />
+            </svg>
+          </a>
+          <a href="https://github.com/WebStack-tech">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C10.6868 2 9.38642 2.25866 8.17317 2.7612C6.95991 3.26375 5.85752 4.00035 4.92893 4.92893C3.05357 6.8043 2 9.34784 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21V19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26V21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12C22 10.6868 21.7413 9.38642 21.2388 8.17317C20.7362 6.95991 19.9997 5.85752 19.0711 4.92893C18.1425 4.00035 17.0401 3.26375 15.8268 2.7612C14.6136 2.25866 13.3132 2 12 2Z" fill="white" />
+            </svg>
+          </a>
+          <a href="mailto:support@webstack.in">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z" fill="white" />
+            </svg>
           </a>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   )
 }

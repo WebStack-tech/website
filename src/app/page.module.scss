@@ -1,0 +1,41 @@
+.page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // gap: 10px;
+
+  h1 {
+    font-size: 100px;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .container {
+    .media {
+      display: flex;
+      gap: 20px;
+      width: 100vw;
+      justify-content: center;
+
+      a {
+        cursor: pointer;
+      }
+    }
+
+    .time {
+      width: 100vw;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 30px;
+      color: #fff;
+      margin: 50px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+  }
+}
